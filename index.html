@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reverse to Normal Order</title>
+</head>
+<body>
+    <h1>Created By Meheraz(FGCI)</h1>
+  <label for="inputText">Input Text:</label>
+  <input type="text" id="inputText">
+  <button onclick="convert()">Convert</button>
+
+  <p id="outputText"></p>
+
+  <script>
+    function convert() {
+      const inputText = document.getElementById('inputText').value.toUpperCase();
+      let outputText = '';
+
+      for (let i = 0; i < inputText.length; i++) {
+        const charCode = inputText.charCodeAt(i);
+
+        if (charCode >= 65 && charCode <= 90) { // Check if it's an English letter
+          const normalizedCharCode = 90 - (charCode - 65);
+          outputText += String.fromCharCode(normalizedCharCode);
+        } else {
+          outputText += inputText[i]; // Keep non-English letters unchanged
+        }
+      }
+
+      document.getElementById('outputText').textContent = "Your converted Text is: " + outputText;
+    }
+  </script>
+</body>
+</html>
