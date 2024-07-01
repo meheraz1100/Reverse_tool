@@ -1,38 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Reverse to Normal Order</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <h1>Created By Meheraz(FGCI)</h1>
-  <label for="inputText">Input Text:</label>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reverse to Normal Order</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link rel="shortcut icon" href="https://lh3.googleusercontent.com/a/ACg8ocKiUHoIOBqi3HNmKp5J9CQ8_u7hG1XPLbTKp_OmhZkNqbDOFKT2=s96-c-rg-br100" type="image/x-icon">
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <!-- old code -->
+    <!-- <label for="inputText">Input Text:</label>
   <input type="text" id="inputText">
-  <button onclick="convert()">Convert</button>
+  <button onclick="convert()">Convert</button> -->
 
-  <p id="outputText"></p>
-  <img src="Notes_231123_000110_57c.png">
+    <!-- new code -->
+    <div class="hero bg-base-200">
+      <div class="hero-content flex-col lg:flex-row-reverse">
+        <div class="text-center lg:text-left">
+          <h1 class="text-4xl mb-10">Created By Meheraz(FGCI)</h1>
+          <h1 class="text-5xl font-bold">Convert Tool!</h1>
+        </div>
+        <div class="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+          <div class="card-body">
+            <div class="form-control">
+              <label class="label" for="inputText">
+                <span class="label-text">Input Text</span>
+              </label>
+              <input
+                type="text"
+                placeholder="Input"
+                id="inputText"
+                class="input input-bordered"
+                required
+              />
+            </div>
+            <div class="form-control mt-6">
+              <button onclick="convert()" class="btn btn-primary">
+                Convert
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p id="outputText" class="text-3xl"></p>
+    </div>
 
-  <script>
-    function convert() {
-      const inputText = document.getElementById('inputText').value.toUpperCase();
-      let outputText = '';
+    <!-- <img src="Notes_231123_000110_57c.png"> -->
+    
+    <script>
+      function convert() {
+        const inputText = document
+          .getElementById("inputText")
+          .value.toUpperCase();
+        let outputText = "";
 
-      for (let i = 0; i < inputText.length; i++) {
-        const charCode = inputText.charCodeAt(i);
+        for (let i = 0; i < inputText.length; i++) {
+          const charCode = inputText.charCodeAt(i);
 
-        if (charCode >= 65 && charCode <= 90) { // Check if it's an English letter
-          const normalizedCharCode = 90 - (charCode - 65);
-          outputText += String.fromCharCode(normalizedCharCode);
-        } else {
-          outputText += inputText[i]; // Keep non-English letters unchanged
+          if (charCode >= 65 && charCode <= 90) {
+            // Check if it's an English letter
+            const normalizedCharCode = 90 - (charCode - 65);
+            outputText += String.fromCharCode(normalizedCharCode);
+          } else {
+            outputText += inputText[i]; // Keep non-English letters unchanged
+          }
         }
+
+        document.getElementById("outputText").textContent = outputText;
       }
 
-      document.getElementById('outputText').textContent = "Your converted Text is: " + outputText;
-    }
-  </script>
-</body>
+      function copyTextFn() {
+        // Get the text field
+        var copyText = document.getElementById("outputText");
+
+        // Select the text field
+        copyText.select();
+        copyText.setSelectionRange(0, 99999); // For mobile devices
+
+        // Copy the text inside the text field
+        navigator.clipboard.writeText(copyText.value);
+
+        // Alert the copied text
+        alert("Copied the text: " + copyText.value);
+      }
+    </script>
+  </body>
 </html>
